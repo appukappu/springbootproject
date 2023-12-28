@@ -1,8 +1,7 @@
 package com.neotric.student.controller;
 
 import com.neotric.student.model.StudentEntity;
-import com.neotric.student.service.SchoolService;
-import com.neotric.student.service.StudentService;
+import com.neotric.student.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,5 +31,16 @@ public class StudentController {
         SchoolService ss=new SchoolService();
         return ss.getremove();
 }
+      @GetMapping(value = "/getcurrentstudent")
+    public List <Student>getcurrentstudent(){
+          InMemory service = new InMemory();
+          return service.getCurrentStudent();
+      }
+    @GetMapping(value = "/getStudentMap")
+    public String getStudentMap () {
+         InMemoryService inMemoryService = new InMemoryService();
+        return inMemoryService.getStudentNameByRollNo(123);
+    }
+
 
 }
